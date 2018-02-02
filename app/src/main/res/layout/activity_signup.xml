@@ -85,14 +85,18 @@
                 />
             <EditText
                 android:background="@drawable/edittextstyle"
-                android:hint="Blood Group"
+                android:hint="Blood Group (Eg: A- or A+)"
                 android:id="@+id/blood_grp"
                 android:layout_marginTop="20dp"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:inputType="text"
+                android:digits="aboABO+-"
+
 
                 />
+
             <EditText
                 android:background="@drawable/edittextstyle"
                 android:hint="Aadhar ID"
