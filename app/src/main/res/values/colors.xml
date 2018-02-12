@@ -6,5 +6,6 @@
     <color name="colorBlue">#05c3f9</color>
     <color name="colorBlueDark">#0691b8</color>
     <color name="colorAzur">#f1f5f8</color>
+    <color name="action_bar">#1f2649</color>
     <color name="colorWhite">#ffffff</color>
 </resources>
