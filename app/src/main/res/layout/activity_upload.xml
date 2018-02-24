@@ -1,49 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/colorWhite"
     android:visibility="visible">
 
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="429dp"
-        android:paddingBottom="100dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="Upload Docs"
+        app:titleTextColor="@color/colorWhite"
 
-        <ImageView
-            android:id="@+id/ivImage"
+        />
+
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="image"
-            android:visibility="gone" />
+            android:layout_height="370dp"
+
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:contentDescription="image"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCamera"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="Capture Image" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnCamera"
+            android:layout_gravity="center"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:text="Submit" />
+
 
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/btnCamera"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:text="Capture Image" />
-
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnCamera"
-        android:layout_gravity="center"
-        android:text="Submit" />
-
-
-</LinearLayout>

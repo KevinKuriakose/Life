@@ -74,6 +74,8 @@
                 android:background="@drawable/buttonstyle"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="40dp"/>

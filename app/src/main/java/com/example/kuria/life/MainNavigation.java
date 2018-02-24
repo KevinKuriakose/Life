@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,10 +15,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 public class MainNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class MainNavigation extends AppCompatActivity
         fragmentTransaction.replace(R.id.fram,fragment,"Quick Emergency");
         fragmentTransaction.commit();
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
@@ -73,12 +75,27 @@ public class MainNavigation extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fram,fragment,"Quick Emergency");
             fragmentTransaction.commit();
+            Intent i= new Intent(getApplicationContext(),LocationService.class);
+            startService(i);
+            Log.v("Location service","Started... DELAY for map");
+            // Toast.makeText(getApplicationContext(),LocationService.lati+", "+LocationService.logi, Toast.LENGTH_LONG).show();
+
+               /* new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent mainIntent = new Intent(MainNavigation.this, QuickEmergency.class);
+                        startActivity(mainIntent);
+                    }
+                }, 5000);*/
+
         } else if (id == R.id.nav_send) {
-            setTitle("Upload Docs");
+           setTitle("Upload Docs");
             UploadDocs fragment = new UploadDocs();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fram,fragment,"Upload Docs");
             fragmentTransaction.commit();
+          /*  Intent userHome = new Intent(this, UploadActivity.class);
+            startActivity(userHome);*/
         } else if (id == R.id.nav_account) {
             setTitle("Account Info");
             Account fragment = new Account();

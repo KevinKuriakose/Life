@@ -10,6 +10,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,11 +36,19 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
     String fname;
     File file;
 
-    @Override
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+           // add back arrow to toolbar
+        if (getSupportActionBar() != null){
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowHomeEnabled(true);
+            }
         //        Object initialization
         cd = new ConnectionDetector(UploadActivity.this);
 
@@ -52,6 +62,14 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         btnCamera.setOnClickListener(this);
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -60,6 +78,11 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
                 Intent cameraintent = new Intent(
                         android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraintent, 101);
+
+                break;
+            case R.id.toolbar:
+                Intent mainintent = new Intent(this, UploadDocs.class);
+                startActivity(mainintent);
 
                 break;
             case R.id.btnSubmit:
@@ -188,7 +211,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
                 // Set your file path here
                 FileInputStream fstrm = new FileInputStream(imagepath);
                 // Set your server page url (and the file title/description)
-                HttpFileUpload hfu = new HttpFileUpload("http://lifemace.xyz/AndroidFileUpload/fileUpload.php", "ftitle", "fdescription", fname);
+                HttpFileUpload hfu = new HttpFileUpload("http://lifemace.xyz/fileUpload.php", "ftitle", "fdescription", fname);
                 upflag = hfu.Send_Now(fstrm);
             } catch (FileNotFoundException e) {
                 // Error: File not found
